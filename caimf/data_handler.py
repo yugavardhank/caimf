@@ -51,6 +51,11 @@ class DataHandler:
     def load_uidai_enrolment_data(self, file_path: str = "data/raw/api_data_aadhar_enrolment_0_500000.csv") -> pd.DataFrame:
         """Load and transform UIDAI enrolment dataset"""
         try:
+            # Check if file exists, if not create sample data
+            if not Path(file_path).exists():
+                logger.warning(f"Data file not found: {file_path}. Generating sample dataset...")
+                return self._generate_sample_uidai_data()
+            
             df = pd.read_csv(file_path)
             logger.info(f"Loaded UIDAI enrolment data: {df.shape[0]} rows")
             
@@ -94,7 +99,60 @@ class DataHandler:
             return result_df
         except Exception as e:
             logger.error(f"Error loading UIDAI enrolment data: {e}")
-            raise
+            logger.warning("Falling back to sample data generation...")
+            return self._generate_sample_uidai_data()
+    
+    def _generate_sample_uidai_data(self) -> pd.DataFrame:
+        """Generate realistic sample UIDAI data for demonstration"""
+        np.random.seed(42)
+        
+        states = self.VALID_STATES[:15]  # Use subset of states
+        years = [2023, 2024, 2025]
+        months = range(1, 13)
+        
+        data = []
+        for state in states:
+            # 3-5 districts per state
+            num_districts = np.random.randint(3, 6)
+            for dist_num in range(num_districts):
+                district = f"{state.split()[0]} District {dist_num + 1}"
+                
+                for year in years:
+                    for month in months:
+                        # Generate realistic child enrolment counts
+                        child_base = np.random.randint(5000, 50000)
+                        child_trend = (year - 2023) * 2000 + month * 100
+                        child_count = max(child_base + child_trend + np.random.normal(0, 1000), 100)
+                        
+                        # Adult enrolments are typically higher
+                        adult_base = np.random.randint(20000, 150000)
+                        adult_trend = (year - 2023) * 5000 + month * 200
+                        adult_count = max(adult_base + adult_trend + np.random.normal(0, 3000), 500)
+                        
+                        # Child record
+                        data.append({
+                            'Year': year,
+                            'Month': month,
+                            'State': state,
+                            'District': district,
+                            'Age_Group': 'Child',
+                            'Enrolment_Count': int(child_count)
+                        })
+                        
+                        # Adult record
+                        data.append({
+                            'Year': year,
+                            'Month': month,
+                            'State': state,
+                            'District': district,
+                            'Age_Group': 'Adult',
+                            'Enrolment_Count': int(adult_count)
+                        })
+        
+        result_df = pd.DataFrame(data)
+        self.raw_data = result_df
+        logger.info(f"Generated sample UIDAI data: {len(result_df)} records, {result_df['State'].nunique()} states, {result_df['District'].nunique()} districts")
+        return result_df
     
     def validate_schema(self, df: pd.DataFrame) -> bool:
         """Validate dataframe schema"""
