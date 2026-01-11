@@ -70,9 +70,8 @@ with st.sidebar:
         if st.button("🔄 Load UIDAI Enrolment Dataset"):
             with st.spinner("Loading and processing UIDAI data..."):
                 try:
-                    raw_data = st.session_state.data_handler.load_uidai_enrolment_data(
-                        "data/raw/api_data_aadhar_enrolment_0_500000.csv"
-                    )
+                    # Don't pass file path - let it use default and auto-generate if needed
+                    raw_data = st.session_state.data_handler.load_uidai_enrolment_data()
                     clean_data = st.session_state.data_handler.clean_data_pipeline(raw_data)
                     normalized_data = st.session_state.data_handler.normalize_data(clean_data)
                     params = st.session_state.data_handler.extract_parameters(normalized_data)
@@ -83,6 +82,8 @@ with st.sidebar:
                     st.success("✅ UIDAI dataset loaded and processed!")
                 except Exception as e:
                     st.error(f"❌ Error: {str(e)}")
+                    import traceback
+                    st.error(traceback.format_exc())
     
     st.markdown("---")
     st.info("""
