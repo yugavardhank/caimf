@@ -1,95 +1,35 @@
 # Virtual Environment
 venv/
 env/
-ENV/
-.venv
+.venv/
 
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
 *.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+dist/
+build/
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-.hypothesis/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-.project
-.pydevproject
-.settings/
-*.sublime-project
-*.sublime-workspace
-
-# Environment Variables
+# Environment
 .env
 .env.local
-.env.*.local
 
-# Data (keep raw structure, ignore large files and processed)
-data/processed/*
-!data/processed/.gitkeep
+# Data (CSV files are large)
 data/raw/*.csv
-!data/raw/.gitkeep
+data/processed/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
 
 # Logs
 *.log
-logs/
 
-# Streamlit
-.streamlit/
-.streamlit/secrets.toml
+# Node modules (Netlify)
+node_modules/
 
-# Docker
-.docker/
-docker-compose.override.yml
-
-# OS
-Thumbs.db
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Temporary files
-tmp/
-temp/
+# Temporary
 *.tmp
 *.bak
-
-# Node (if any frontend added later)
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# System
-*.rar
-*.zip
-*.7z
