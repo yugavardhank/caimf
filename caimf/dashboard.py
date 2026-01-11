@@ -9,10 +9,15 @@ import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime
 import logging
+import sys
+from pathlib import Path
 
-from caimf.data_handler import DataHandler, create_sample_dataset
-from caimf.models import InclusionScoringModels
-from caimf.anomaly_detection import AnomalyDetector
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from data_handler import DataHandler, create_sample_dataset
+from models import InclusionScoringModels
+from anomaly_detection import AnomalyDetector
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
