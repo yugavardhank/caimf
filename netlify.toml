@@ -5,9 +5,12 @@
 command = "npm install"
 publish = "/"
 functions = "netlify/functions"
+ignore = "requirements.txt"
 
 [build.environment]
 NODE_VERSION = "18"
+NETLIFY_USE_YARN = "false"
+SKIP_PYTHON = "true"
 
 [[redirects]]
 # Redirect API calls to backend

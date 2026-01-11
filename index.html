@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAIMF - Child Aadhaar Inclusion Monitoring Framework</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        h1 { color: #667eea; margin-bottom: 1rem; font-size: 2rem; }
+        p { color: #666; line-height: 1.8; margin-bottom: 2rem; }
+        .links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 1rem 2rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .btn:hover { background: #764ba2; transform: translateY(-2px); }
+        .btn.secondary { background: #48bb78; }
+        .btn.secondary:hover { background: #38a169; }
+        .status { margin-top: 2rem; padding: 1rem; background: #f7fafc; border-radius: 8px; }
+        .status-item { display: flex; justify-content: space-between; margin: 0.5rem 0; }
+        .badge { padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.875rem; }
+        .badge.live { background: #c6f6d5; color: #22543d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 CAIMF</h1>
+        <h2>Child Aadhaar Inclusion Monitoring Framework</h2>
+        <p>A real-time, data-driven decision support system for monitoring child Aadhaar enrolment inclusion across regions.</p>
+        
+        <div class="links">
+            <a href="https://caimf.streamlit.app" class="btn" target="_blank">📊 Dashboard</a>
+            <a href="https://github.com/yugavardhank/caimf" class="btn secondary" target="_blank">💻 GitHub</a>
+        </div>
+
+        <div class="status">
+            <h3 style="margin-bottom: 1rem; color: #667eea;">System Status</h3>
+            <div class="status-item">
+                <span>Dashboard:</span>
+                <span class="badge live">🟢 Live</span>
+            </div>
+            <div class="status-item">
+                <span>GitHub Repository:</span>
+                <span class="badge live">🟢 Active</span>
+            </div>
+            <div class="status-item">
+                <span>Data Coverage:</span>
+                <span>500K+ records, 49 states, 953 districts</span>
+            </div>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.875rem; color: #999;">
+            Built for UIDAI Data Hackathon 2026
+        </p>
+    </div>
+</body>
+</html>
