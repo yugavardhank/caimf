@@ -50,8 +50,9 @@ class DataHandler:
     
     def load_uidai_enrolment_data(self, file_path: str = "data/raw/api_data_aadhar_enrolment_0_500000.csv") -> pd.DataFrame:
         """Load and transform UIDAI enrolment dataset"""
-        # Check if file exists, if not create sample data
-        if not Path(file_path).exists():
+        # Always generate sample data for cloud deployment
+        import os
+        if not os.path.isfile(file_path):
             logger.warning(f"Data file not found: {file_path}. Generating sample dataset...")
             return self._generate_sample_uidai_data()
         
